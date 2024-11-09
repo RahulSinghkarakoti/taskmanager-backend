@@ -81,6 +81,7 @@ const getAllTasks = asyncHandler(async (req, res) => {
           _id: "$status",
           tasks: {
             $push: {
+              _id:"$_id",
               title: "$title",
               description: "$description",
               deadline: "$deadline",
