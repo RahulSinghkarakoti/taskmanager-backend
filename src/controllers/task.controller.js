@@ -196,4 +196,22 @@ const deleteTask = asyncHandler(async (req, res) => {
   }
 });
 
-export { getAllTasks, getTaskById, createTask, updateTask, deleteTask };
+
+const doneTask= asyncHandler(async (req, res)=>{
+  console.log("in done task route")
+  const {id}= req.params;
+  try {
+      const task = await Task.findByIdAndUpdate(id, {status: "Done"}, {new: true});
+      if (!task) {
+        throw new ApiError(404, "Task not found");
+        }
+        return res
+        .status(200)
+        .json(new ApiResponse(200, task, "task done successfully"));
+  } catch (error) {
+    throw new ApiError(500, "Internal server error",error);
+  }
+
+})
+
+export { getAllTasks, getTaskById, createTask, updateTask, deleteTask,doneTask };
