@@ -15,12 +15,11 @@ const taskSchema = new mongoose.Schema(
     status: {
       type: String,
       required: true,
-      // enum: ["To Do", "In Progress", "Done", "Timeout"],
     },
     deadline: {
       type: Date,
       required: true,
-      min: 1, // Ensures the duration is at least 1 minute
+      min: 1, 
     },
   },
   { timestamps: true }

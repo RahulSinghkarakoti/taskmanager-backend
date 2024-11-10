@@ -1,6 +1,5 @@
 import express, { json } from "express"
 import cors from "cors"
-import cookieParser from "cookie-parser"
 import bodyParser from "body-parser"
 import cron from "node-cron"
 import { Task } from "./models/task.model.js"
@@ -21,7 +20,6 @@ app.use(express.static('public'))
 
 app.use(bodyParser.json());
 
-app.use(cookieParser());//use to perform CRUD operation on cookies_at user device
 
 // Schedule the cron job (e.g., every hour)
 cron.schedule('0 * * * *', async () => {
@@ -42,10 +40,9 @@ cron.schedule('0 * * * *', async () => {
 });
 
 
-// //import routes
+ //import routes
 import TaskRouter from "./routes/task.route.js" 
-
-// //routes declaration
+ //routes declaration
 app.get('/api/v1',(req,res)=>{
     res.send('welcome to task api')
 })
